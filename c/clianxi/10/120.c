@@ -1,6 +1,5 @@
 /*递归解决分鱼问题*/
 #include <stdio.h>
-
 int sub(int n);
 int main()
 {
@@ -21,6 +20,7 @@ int sub(int n)
         {
             i++;
         } while (i % 5 != 0);
+        
         return (i + 1);
     }
     else
@@ -30,6 +30,7 @@ int sub(int n)
         {
             t = sub(n - 1);
         } while (t % 4 != 0);
+        printf("%d\n",t);
         return (t / 4 * 5 + 1);
     }
 }
