@@ -35,10 +35,10 @@ void add(int **p,int *n,int number) // 添加 *n 成员个数
     if(*p == NULL)
         return;
     (*p)[*n] = number;
-    (*n)++;
+    (*n)++;//添加一次自增一次
 }
 
-int dell(int **p,int *n, int number)
+int dell(int **p,int *n, int number)//删除指定元素
 {
     int i;
     for(i = 0; i < *n; i++)
@@ -56,7 +56,7 @@ int dell(int **p,int *n, int number)
     return 0;
 }
 
-int find(int *p, int n, int number)
+int find(int *p, int n, int number)//查找
 {
     int i;
     for(i = 0; i < n; i++)
@@ -73,7 +73,7 @@ int find(int *p, int n, int number)
     return p[i];
 }
 
-void show(int *a,int n)
+void show(int *a,int n)//遍历数组
 {
     for(int i = 0; i < n; i++)
     {

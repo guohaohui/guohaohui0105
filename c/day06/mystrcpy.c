@@ -35,9 +35,9 @@ char *mystrcpy(char *dest, char *src)
 {
 	int i;
 
-	for (i = 0; src[i] != '\0'; i++)
+	for (i = 0; src[i] != '\0'; i++)// 遇到'\0'结束循环
 	{
-		dest[i] = src[i];
+		dest[i] = src[i];//把src[]里的内容复制到dest[]
 	}
 
 	dest[i] = '\0';
@@ -51,7 +51,7 @@ char *mystrcat(char *dest, char *src)
 	int i;
 	for(i = 0; dest[i]; i++)
 		;
-	mystrcpy(dest+i,src);
+	mystrcpy(dest+i,src);//把src的内容拷贝到dest(从dest+i处拷贝）
 
 	return dest;
 }

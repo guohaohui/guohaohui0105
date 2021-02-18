@@ -8,7 +8,7 @@ int main()
 {
     char *guo = "guo HAO hui";
 
-    char *ret1 = reverseString(guo);
+    char *ret1 = reverseString(guo);//把返回值赋给ret1
 
     puts(ret1);
 
@@ -18,14 +18,14 @@ int main()
     return 0;
 }
 
-char *reverseString(const char *p)
+char *reverseString(const char *p)//把大小字符转换成小写的小写的转换成大写的
 {
     char *ret = NULL;
     int i;
     size_t size;
     size = strlen(p)+1;
 
-    ret = calloc(size, sizeof(char));
+    ret = calloc(size, sizeof(char));//在内存动态存储区中分配size块长度为sizeof(char)字节的连续区域并初始化为零
     if(ret == NULL)
     {
         exit(1);
