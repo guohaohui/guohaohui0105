@@ -36,7 +36,7 @@ int main(int argc , char **argv)
     left = atoi(argv[1]); //字符串转整形函数 atoi(3)
     right = atoi(argv[3]);
 
-    if(!strcmp(argv[2],"+"))
+    if(!strcmp(argv[2],"+"))//判断命令行的输入
     {
         printf("%d+%d=%d\n", left, right,op(left, right, add));
     }
