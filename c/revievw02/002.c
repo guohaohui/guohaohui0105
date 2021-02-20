@@ -1,3 +1,7 @@
+/*错误太多！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,7 +47,7 @@ char **store(int* n)
     int k = 0;
     a = calloc(1,sizeof(char *));
     arr = calloc(1, sizeof(char *));
-    while (scanf("%s", a) == 1)
+    while (scanf("%s", a) == 1 && *a != '\n')
     {
         if (*a == '0')
             break;

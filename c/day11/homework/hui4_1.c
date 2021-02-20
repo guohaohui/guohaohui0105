@@ -1,3 +1,12 @@
+/*
+guo  hao hui
+ch ' '
+输出
+guo
+hao
+hui
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,7 +16,7 @@ char **sep_str(const char *p, char ch);
 int main(int argc, char *argv[])
 {
     char **ret;
-    if (argc < 3)
+    if (argc < 3) //命令行参数必须大于3
         return 1;
     ret = sep_str(argv[1], *argv[2]);
     for (int i = 0; ret[i]; i++)
@@ -18,7 +27,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-char **sep_str(const char *p, char ch)
+char **sep_str(const char *p, char ch)//把一行字符串中的字串保存到堆空间中
 {
     char *tmp;
     char **ret;
@@ -29,13 +38,13 @@ char **sep_str(const char *p, char ch)
     tmp = malloc(strlen(p) + 1);
     if (tmp == NULL)
         return NULL;
-    strcpy(tmp, p);
+    strcpy(tmp, p);//把p的内容拷贝到tmp中
 
     p = tmp;
 
     while (*tmp)
     {
-        if (*tmp != ch)
+        if (*tmp != ch)//如果*tmp！=' ' 
         {
             tmp++;
         }
