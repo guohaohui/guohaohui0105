@@ -17,7 +17,7 @@ struct animal
     int year;
 };
 
-int MAX(struct animal *arr);
+void MAX(struct animal *arr, int n);
 int main()
 {
     struct animal arr[5];
@@ -27,16 +27,16 @@ int main()
         scanf("%s%s%d", arr[i].color, arr[i].name, &arr[i].year);
     }
 
-    MAX(arr);
+    MAX(arr, sizeof(arr)/sizeof(*arr));
 
     return 0;
 }
 
-int MAX(struct animal *arr)
+void MAX(struct animal *arr, int n)
 {
     int i,j;
     int max = 0;
-    for(i = 0; i < 5; i++)
+    for(i = 0; i < n; i++)
     {
         max = (arr[max].year < arr[i].year) ? i : max; 
     }
