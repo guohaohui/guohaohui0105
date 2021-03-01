@@ -1,15 +1,24 @@
 #include <stdio.h>
 #include "seqlist.h"
 
-void showInt(const void *data)
+static void showInt(const void *data)
 {
     const int *d = data;
     printf("%d\n", *d);
 }
 
+static int findInt(const void *data, const void *key)
+{
+    const int *d1 = data;
+    const int *d2 = key;
+
+    return *d1 - *d2;
+}
+
 
 int main()
 {
+    
     seqlist_t *mylist;
 
     mylist = seqlistInit(sizeof(int));   //初始化
@@ -20,6 +29,9 @@ int main()
 
     seqlistTraval(mylist,showInt);
 
+    printf("\n");
+    int t = 11;
+    printf("%d\n", *(int *)(seqlistFind(mylist, &t, findInt)));
 
     return 0;
 }

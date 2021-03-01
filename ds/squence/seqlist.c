@@ -20,7 +20,7 @@ int seqlistInsert(seqlist_t *s, const void *data)
     if(s->arr == NULL)
         return -1;
     memcpy((char *)s->arr + s->nmemb * s->size, data, s->size);
-
+    s->nmemb ++;
     return 0;
 }
 
@@ -32,4 +32,15 @@ void seqlistTraval(const seqlist_t *s, void (*ptr)(const void *data))
     }
 
 
+}
+// 查找
+void *seqlistFind(const seqlist_t *s, const void *key, cmp_t cmp)
+{
+    for(int i = 0; i < s->nmemb; i++)
+    {
+        if(cmp(s->arr + i * s->size, key) == 0)
+        {
+            return s->arr + i * s->size;
+        }
+    }
 }
