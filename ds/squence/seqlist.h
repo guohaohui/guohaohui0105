@@ -30,4 +30,14 @@ void seqlistTraval(const seqlist_t *s, void (*ptr)(const void *data));
 
 void *seqlistFind(const seqlist_t *s, const void *key, cmp_t cmp);
 
+//  删除
+int seqlistDelete(seqlist_t *s, const void *key, cmp_t cmp);
+
+//  修改
+int seqlistUpdate(const seqlist_t *s, const void *key, cmp_t cmp, const void *newdata);
+
+//  销毁
+void seqlistDestroy(seqlist_t *s);
+
+
 #endif
