@@ -50,5 +50,7 @@ int seqlistUpdate(const seqlist_t *s, const void *key, cmp_t cmp, const void *ne
 //  销毁
 void seqlistDestroy(seqlist_t *s);
 
+//  插入时有序
+int seqlistSortInsert(seqlist_t *s, const void *data, cmp_t cmp);
 
 #endif

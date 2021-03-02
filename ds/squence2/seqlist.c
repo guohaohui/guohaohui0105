@@ -13,7 +13,7 @@ seqlist_t *seqlistInit(int size)
     s->size = size;
     return s;
 }
-
+// 插入
 int seqlistInsert(seqlist_t *s, const void *data)
 {
     s->arr = realloc(s->arr, (s->nmemb +1)*s->size);
@@ -23,6 +23,28 @@ int seqlistInsert(seqlist_t *s, const void *data)
     s->nmemb ++;
     return 0;
 }
+// 插入时有序
+int seqlistSortInsert(seqlist_t *s, const void *data, cmp_t cmp)
+{
+    int i;
+    for(i = 0; i < s->nmemb; i++)
+    {
+        if(cmp((char *)s->arr + i * s->size, data) > 0)
+            break; 
+    }
+    s->arr = realloc(s->arr, (s->nmemb + 1) * s->size);
+    if(s->arr == NULL)
+        return -1;
+    if(s->nmemb > 0)
+    {
+        memmove((char *)s->arr + (i+1) * s->size,(char *)s->arr + i * s->size, (s->nmemb - i) * s->size );
+    }
+    memcpy((char *)s->arr + i * s->size, data, s->size);
+    s->nmemb ++;
+    return 0;
+}
+
+
 
 void seqlistTraval(const seqlist_t *s, void (*ptr)(const void *data))
 {
