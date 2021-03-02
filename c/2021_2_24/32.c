@@ -6,7 +6,7 @@ void insert(char *s, char*t, int i);
 
 int main()
 {
-    char arr[] = "guohaohui";
+    char arr[50] = "guohaohui";
     char arr1[] = "hello";
 
     insert(arr,arr1,4);
@@ -22,10 +22,10 @@ void insert(char *s, char*t, int i)
     //char *p = (char *)calloc(len + len1 +1, sizeof(char));
     char *p = s; // p指向x;
     char *q = (char *)calloc(len - i + 1, sizeof(char));
-    memcpy(q,s+i,len - i);
+    memcpy(q,s+i,len - i+1);
     memcpy(p,s,i);
     memcpy(p+i,t,len1);
-    memcpy(p+i+len1,q,len - i);
+    memcpy(p+i+len1,q,len - i+1);
     free(q);
    // memcpy(&s,&p,len+len1);
 
