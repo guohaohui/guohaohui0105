@@ -28,8 +28,8 @@ int main(void)
 
     listTraval(head, showInt);
     printf("\n");
-    printf("Delete %d\n", *(arr+6));
-    listDelete(head, arr+6, intCmp);//删除
+    printf("Delete %d\n", *(arr+2));
+    listDelete(head, arr+2, intCmp);//删除
 
     listTraval(head, showInt);//遍历
     printf("\n");

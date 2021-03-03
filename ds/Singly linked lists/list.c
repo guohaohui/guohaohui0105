@@ -73,6 +73,8 @@ int listDelete(listhead_t *l, const void *key, cmp_t cmp)
         {
             n = p;
             l->next = p->next;
+            n->next = NULL;
+            free(n->data);
             free(n);
             return 1;
         }
@@ -80,6 +82,8 @@ int listDelete(listhead_t *l, const void *key, cmp_t cmp)
         {
             n = p->next;
             p->next = n->next;
+            n->next = NULL;
+            free(n->data);
             free(n);
             return 1;
         }
