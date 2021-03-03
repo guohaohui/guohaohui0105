@@ -115,6 +115,22 @@ int listIsEmpty(const listhead_t *l)
 }
 
 /*销毁*/
+#if 0
+void listDestroy(listhead_t *l)
+{
+    node_t *p, *n;
+
+	for (p = l->head.next, n = p->next; ; n = n->next) {
+		free(p);
+		p = n;
+		if (p == NULL)
+			break;
+	}
+
+	free(l);
+}
+#endif
+
 void listDestroy(listhead_t *l)
 {
     node_t *p;
@@ -127,3 +143,18 @@ void listDestroy(listhead_t *l)
     }
     free(l);
 }
+
+/*
+void listDestroy(listhead_t *l)
+{
+    node_t *p , *n;
+    for(p = l->head.next;p != &l->head ; p = n)
+    {
+        n = p->next;
+
+        free(p->data);
+        free(p);
+    }
+    free(l);
+}
+*/

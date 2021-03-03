@@ -38,5 +38,6 @@ int main()
     else
         printf("It's not an empty linked list !\n");
     listDestroy(s);// 销毁
+    
     return 0;
 }
