@@ -19,7 +19,7 @@ int listInit(int size, listhead_t **l)
     return 0;
 }
 // 插入
-int listadd(listhead_t *l, const void *data, cmp_t cmp, int key)
+int listadd(listhead_t *l, const void *data, int key)
 {
     node_t *p;
     node_t *n;
@@ -53,7 +53,7 @@ int listadd(listhead_t *l, const void *data, cmp_t cmp, int key)
     return 0;
 }
 // 遍历
-void listprintf(listhead_t *l, pri_t pri)
+void listprintf(const listhead_t *l, pri_t pri)
 {
     node_t *p;
     for(p = l->head.next; p != &l->head; p = p->next)
@@ -61,3 +61,71 @@ void listprintf(listhead_t *l, pri_t pri)
         pri(p->data);
     }
 }
+
+/*查找*/
+const void *listSearch(const listhead_t *l, const void *key, cmp_t cmp)
+{
+    const node_t *cur;
+    for(cur = l->head.next; cur != &l->head; cur = cur->next)
+    {
+        if(cmp(cur->data, key) == 0)
+        {
+            return cur;
+        }
+    }
+    return NULL;
+}
+
+//  删除
+int listDelete(listhead_t *l, const void *key, cmp_t cmp)
+{
+    node_t *cur = (node_t *)listSearch(l, key, cmp);
+    cur->prev->next = cur->next;
+    cur->next->prev = cur->prev;
+    free(cur->data);
+    free(cur);
+}
+
+/*摘除:删掉指定结点的同事获得数据*/
+void *listFetch(listhead_t *l, const void *key, cmp_t cmp)
+{
+    node_t *cur = (node_t *)listSearch(l, key, cmp);
+    void *p;
+    p = malloc(l->size);
+    if(p == NULL)
+        return NULL;
+    memcpy(p, cur->data, l->size);    
+    cur->prev->next = cur->next;
+    cur->next->prev = cur->prev;
+    free(cur->data);
+    free(cur);
+    return p;
+}
+
+/*判断是否为空表*/
+int listIsEmpty(const listhead_t *l) 
+{
+    node_t *p;
+    int i = 0;
+    for(p = l->head.next; p != &l->head ; p = p->next)
+        i++;
+    if(i == 0)
+        return 0;
+    return 1;
+}
+
+/*销毁*/
+void listDestroy(listhead_t *l)
+{
+    node_t *p;
+    for(p = l->head.next; ; p = p->next)
+    {
+        if(p == &l->head)
+            break;
+        free(p->data);
+        free(p);
+    }
+    free(l);
+}
+
+
