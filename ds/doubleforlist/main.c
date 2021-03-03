@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "list.h"
-
 static int cmpIint(const void *data, const void *key)
 {
     const int *d = data;
@@ -12,8 +11,6 @@ static void pri(const void *data)
     const int *d = data;
     printf("%d ", *d);
 }
-
-
 int main()
 {
     int arr[] = {3,6,1,2,9,7};
@@ -21,6 +18,7 @@ int main()
     listhead_t *s;
     
     listInit(sizeof(int), &s); //   初始化
+    
     for(int i = 0; i < sizeof(arr)/sizeof(*arr); i++)
     {
         listadd(s,arr+i,TALT); //   添加
@@ -39,5 +37,6 @@ int main()
         printf("It's an empty linked list !\n");
     else
         printf("It's not an empty linked list !\n");
-    listDestroy(s);
+    listDestroy(s);// 销毁
+    return 0;
 }
