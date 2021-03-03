@@ -35,7 +35,7 @@ int main()
     printf("Delete the %d\n",*(int *)listFetch(s,arr+3,cmpIint)); //把删除后的书打印出来
     listprintf(s,pri); //   遍历
     printf("\n");
-    if(listIsEmpty(s) == 0)
+    if(listIsEmpty(s) == 0) //判断是否为空链表
         printf("It's an empty linked list !\n");
     else
         printf("It's not an empty linked list !\n");
