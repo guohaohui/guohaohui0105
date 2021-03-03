@@ -52,5 +52,4 @@ void listTraval(const listhead_t *l, pri_t pri);
 销毁
 */
 void listDestroy(listhead_t *l);
-
 #endif

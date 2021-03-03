@@ -22,7 +22,8 @@ int main()
     listInit(sizeof(int), &s);
     for(int i = 0; i < sizeof(arr)/sizeof(*arr); i++)
     {
-        listadd(s,arr+i,cmpIint,HEAD);
+        listadd(s,arr+i,cmpIint,TALT);
     }
+	printf("\n");
     listprintf(s,pri);
 }
