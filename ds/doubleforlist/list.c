@@ -75,7 +75,14 @@ const void *listSearch(const listhead_t *l, const void *key, cmp_t cmp)
     }
     return NULL;
 }
-
+static void nodeDelete(node_t *del)
+{
+	del->prev->next = del->next;
+	del->next->prev = del->prev;
+	
+	free(del->data);
+	free(del);
+}
 //  删除
 int listDelete(listhead_t *l, const void *key, cmp_t cmp)
 {
@@ -115,32 +122,16 @@ int listIsEmpty(const listhead_t *l)
 }
 
 /*销毁*/
-#if 0
-void listDestroy(listhead_t *l)
-{
-    node_t *p, *n;
-
-	for (p = l->head.next, n = p->next; ; n = n->next) {
-		free(p);
-		p = n;
-		if (p == NULL)
-			break;
-	}
-
-	free(l);
-}
-#endif
-
 void listDestroy(listhead_t *l)
 {
     node_t *p;
-    for(p = l->head.next; ; p = p->next)
-    {
-        if(p == &l->head)
-            break;
-        free(p->data);
-        free(p);
-    }
+	if(listIsEmpty(l)){
+		for(p = (l->head.next)->next; ; p = p->next){
+			nodeDelete(p->prev);
+			if(p == &l->head)
+				break;	
+		}
+	}
     free(l);
 }
 
