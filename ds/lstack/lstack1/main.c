@@ -7,20 +7,23 @@ int main(void)
 	lstack_t *me;
 
 	int n;	
-
-	lstackInit(sizeof(int), &me);
+	lstackInit(sizeof(int),10, &me);
 	
-	for(int i = 1; i<10; i++)
+	for(int i = 1; i<100; i++)
 	{
-		lstackPush(me, &i);
+		if(lstackPush(me, &i)!= 0)
+		{
+			break;
+		}
 	}
-	while(lstackFull(me))
+	while(!lstackEmpty(me))
 	{
 		lstackPop(me, &n);
-	printf("11111111111111111111\n");
 		printf("%d\n",n);
 	}
 
 	lstackDestory(me);
+
+	return 0;
 
 }
