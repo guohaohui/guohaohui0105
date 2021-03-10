@@ -17,8 +17,8 @@ typedef struct {
 	int size;
 }llisthead_t;
 
-typedef void (*pri_t)(const void *);
-typedef int (*cmp_t)(const void *data, const void *key);
+typedef void (*pri_t)(const void *);//打印函数
+typedef int (*cmp_t)(const void *data, const void *key);//比较函数
 
 //头结点初始化
 int llisthead_init(int size, llisthead_t **list);
