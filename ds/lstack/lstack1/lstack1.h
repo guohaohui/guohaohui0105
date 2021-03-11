@@ -3,10 +3,10 @@
 //顺序表栈
 typedef struct lstack_st
 {
-	void *bottom;
-	void *top;
+	void *bottom;//栈底
+	void *top;//栈顶
 	int size;
-	int capacity;
+	int capacity;//容量
 }lstack_t;
 
 //	初始化栈
