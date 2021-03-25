@@ -1,3 +1,4 @@
+#include "001.h"
 #include <stdio.h>
 #include <time.h>
 #include <sys/types.h>
@@ -6,26 +7,28 @@
 #include <pwd.h>
 #include <grp.h>
 
-static char fileType(const struct stat res);
-static char *fileMode(const struct stat res);
-static long fileNlink(const struct stat res);
-static char *fileUidName(const struct stat res);
-static char *fileGidName(const struct stat res);
-static long fileSize(const struct stat res);
-static char *fileTime(const struct stat res);
-int main(int argc, char *argv[])
+int stat_i(char *arr)
 {
 	struct stat res;
-
-	if(argc < 2)
-		return 1;
-
-	if(stat(argv[1], &res) == -1)
+	if(stat(arr, &res) == -1)
 	{
 		perror("stat()");
 		return 1;
 	}
+	printf("%ld   ", res.st_ino);
+}
 
+
+
+int stat_l(char *arr)//---->ls -l
+{
+	struct stat res;
+	if(stat(arr, &res) == -1)
+	{
+		perror("stat()");
+		return 1;
+	}
+	
 	printf("%c",fileType(res));
 	printf("%s",fileMode(res));
 	printf(" %ld",fileNlink(res));
@@ -33,14 +36,13 @@ int main(int argc, char *argv[])
 	printf(" %s",fileGidName(res));
 	printf(" %ld",fileSize(res));
 	printf(" %s",fileTime(res));
-	printf(" %s\n",argv[1]);
+	printf(" %s\n",arr);
 	return 0;
 }
-
 //类型
-static char fileType(const struct stat res)
+char fileType(const struct stat res)
 {
-	
+
 	switch (res.st_mode & S_IFMT) {
 		case S_IFBLK:  return 'b';            break;
 		case S_IFCHR:  return 'c';            break;
@@ -53,7 +55,7 @@ static char fileType(const struct stat res)
 	}
 }
 
-static char *fileMode(const struct stat res)
+char *fileMode(const struct stat res)
 {
 	static char arr[10]= {'\0'};
 //主权限
@@ -68,7 +70,7 @@ static char *fileMode(const struct stat res)
 	}
 
 	switch(res.st_mode & S_IXUSR){
-		case S_IXUSR: 
+		case S_IXUSR:
 			switch(res.st_mode & S_ISUID){
 				case S_ISUID: arr[2] = 's'; break;
 				default:	  arr[2] = 'x'; break;
@@ -116,20 +118,21 @@ static char *fileMode(const struct stat res)
 
 	return arr;
 }
+
 //硬链接数
-static long fileNlink(const struct stat res)
+long fileNlink(const struct stat res)
 {
 	return res.st_nlink;
 }
 //用户名
-static char *fileUidName(const struct stat res)
+char *fileUidName(const struct stat res)
 {
 	struct passwd *p;
 	p = getpwuid(res.st_uid);
 	return p->pw_name;
 }
 //组名
-static char *fileGidName(const struct stat res)
+char *fileGidName(const struct stat res)
 {
 	struct group *g;
 	g = getgrgid(res.st_gid);
@@ -137,13 +140,13 @@ static char *fileGidName(const struct stat res)
 }
 
 //字节大小
-static long fileSize(const struct stat res)
+long fileSize(const struct stat res)
 {
 	return res.st_size;
 }
 //时间
 
-static char *fileTime(const struct stat res)
+char *fileTime(const struct stat res)
 {
 	struct tm *t;
 	static char buf[100] = {};
@@ -154,7 +157,5 @@ static char *fileTime(const struct stat res)
 
 	return buf;
 }
-
-
 
 
