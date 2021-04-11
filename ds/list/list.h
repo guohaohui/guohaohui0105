@@ -29,6 +29,7 @@ typedef void (*pri_t)(const void *data);
 // 传一个由用户决定的每个元素字节大小size,和一个结构体类型的指针的地址
 int listheadInit(int size, listhead_t **l);
 
+int daoxu(listhead_t *head);
 /*
  增
  */

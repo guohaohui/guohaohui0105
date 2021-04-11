@@ -1,4 +1,5 @@
 #include "list.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,6 +47,14 @@ int listInsert(listhead_t *l, const void *data, int way)
 
     return 0;
 }
+
+int daoxu(listhead_t *head)
+{
+		
+	
+	//ptr->next = NULL;
+}
+
 
 // 返回待查找结点的前驱结点地址
 static const node_t *findPrevNode(const listhead_t *l, const void *key, cmp_t cmp)

@@ -32,8 +32,12 @@ int main(void)
 	listTraval(head, showInt);
 
 	printf("*****************delete******************\n");
-	del = 3;
-	listDelete(head, &del, cmpInt);
+	//del = 3;
+	//listDelete(head, &del, cmpInt);
+	//listTraval(head, showInt);
+
+	daoxu(head);
+
 	listTraval(head, showInt);
 
 	listDestroy(head);
